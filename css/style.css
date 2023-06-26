@@ -21,6 +21,8 @@ html {
 }
 
 .body {
+  display: flex;
+  justify-content: center;
   font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
@@ -40,19 +42,8 @@ button:focus {
 }
 
 .wrapper {
-  max-width: 90vw;
-}
-
-@media (max-width: 767px) { 
-  .wrapper {
-    margin-inline: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    margin-inline: auto;
-  }
+  width: 90%;
+  max-width: 1200px;
 }
 
 
@@ -70,8 +61,8 @@ button:focus {
   top: 0;
   left: 0;
   z-index: 666;
-  width: 100%;
   padding-bottom: 2rem;
+  width: 100%;
 }
 
 .header__dimmed-effect {
@@ -80,7 +71,7 @@ button:focus {
   left: 0;
   z-index: -1;
   width: 100%;
-  height: clamp(15vh, 7rem, 5.625rem);
+  height: 7rem;
   background: #0F133B;
   opacity: 0;
   -webkit-transition: var(--default-transition);
@@ -109,7 +100,8 @@ button:focus {
 }
 
 .header__wrapper {
-  padding-top: max(5vh, 1.5rem);
+  margin-inline: auto;
+  padding-top: 2.25rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -146,7 +138,7 @@ button:focus {
 
 .header__menu-list > li > a,
 .header__sign-up-button,
-.header__login-in-button,
+.header__login-button,
 .header__burger-menu-button {
   -webkit-transition: var(--default-transition);
   -moz-transition: var(--default-transition);
@@ -187,7 +179,7 @@ button:focus {
   color: initial;
 }
 
-.header__login-in-button {  
+.header__login-button {  
   width: 105px;
   height: 38px;
   border: 2px solid #6DE0F6;
@@ -196,9 +188,9 @@ button:focus {
   background-color: transparent;
 }
 
-.header__login-in-button:hover,
-.header__login-in-button:focus,
-.header__login-in-button:active {
+.header__login-button:hover,
+.header__login-button:focus,
+.header__login-button:active {
   background-color: rgba(206, 237, 255, 0.15);
 }
 
@@ -239,7 +231,7 @@ button:focus {
     width: 35vw;
   }
 
-  .header__login-in-button {
+  .header__login-button {
     display: none;
   }
 
@@ -296,17 +288,6 @@ button:focus {
   }
 }
 
-@media screen and (min-width: 1600px) {
-  .header__menu-list {
-    gap: 4vw;
-  }
-
-  .header__sign-up-button {
-    margin-right: 3vw;
-  }
-}
-
-
 
 
 
@@ -317,7 +298,7 @@ button:focus {
 
 .main {
   position: relative;
-  margin-top: max(5.5rem, 16.8vh);
+  margin-top: 8rem;
   max-width: 100%;
 }
 
@@ -391,7 +372,6 @@ h3.exchange__subtitle {
 }
 
 .exchange__swap-container {
-  transform: translate(max(265px, 91.5%), -89px);
   height: 0;
 }
 
@@ -434,7 +414,7 @@ h3.exchange__subtitle {
   border: 0;
   outline: 0;
   border-radius: 4px;
-  width: max(20vw, 270px);
+  width: 280px;
   height: 42px;
   font-family: inherit;
   background-color: #CEEDFF;
@@ -472,7 +452,7 @@ h3.exchange__subtitle {
   margin-block: 1.7rem;
   margin-inline: auto;
   border-radius: 28px;
-  width: max(30vw, 310px);
+  width: min(50vw, 370px);
   height: 3rem;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -631,17 +611,30 @@ h3.exchange__subtitle {
     margin-top: 1.5rem;
   }
 
+  .exchange__swap-container {
+    transform: translate(calc(90.5% + 10px), -88px);
+  }
+
   .exchange__illustration {
     display: none;
   }
 }
 
 @media screen and (min-width: 992px) {
+  .exchange__swap-container {
+    transform: translate(calc(90.5% + 10px), -88px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .exchange__swap-container {
+    transform: translate(calc(90% + 10px), -88px);
+  }
+  
   .exchange__illustration {
     display: inline-grid;
   }
 }
-
 
 
 
@@ -659,20 +652,19 @@ h3.exchange__subtitle {
 
 .latest-applications__container {
   position: relative;
-  width: 100%;
 }
 
 .latest-applications__container::before {
   content: "";
-  position: absolute;
-  right: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
   z-index: -1;
-  margin-right: -5vw;
+  margin-left: calc(50% - 50vw);
   width: 100vw;
-  height: max(25rem, 43vh);
-  background: #CEEDFF;
-  transform: matrix(1, 0.025, 0, 1, 0, 0);
-  overflow-x: hidden;
+	height: 100%;
+	background: #CEEDFF;
+	transform: skewY(2deg);
 }
 
 .latest-applications__container h2 {
@@ -787,8 +779,10 @@ h3.exchange__subtitle {
 
 /* footer styles */
 .footer {
+  position: relative;
   display: grid;
   margin-top: 10rem;
+  padding-bottom: 3rem;
   width: 100%;
   height: auto;
   grid-template-columns: 2fr 2fr 4fr 2fr;
@@ -799,15 +793,14 @@ h3.exchange__subtitle {
 
 .footer::before {
   content: "";
-  position: absolute;
-  right: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
   z-index: -1;
-  margin-right: -5vw;
+  margin-left: calc(50% - 50vw);
   width: 100vw;
-  /* height: min(45rem, calc(100vw / 5)); */
-  height: 20%;
+	height: 100%;
   background-color: #323232;
-  overflow-x: hidden;
 }
 
 .footer__brand,
@@ -819,11 +812,10 @@ h3.exchange__subtitle {
 
 .footer__brand {
   grid-area: brand;
-  margin-right: 4rem;
+  margin-right: 2rem;
 }
 
 .footer__brand-logo {
-  /* margin-right: 1rem; */
   width: var(--logo-size);
   height: var(--logo-size);
   background: url("../imgs/svg/cryptosale-logo.svg") no-repeat;
@@ -844,6 +836,7 @@ h3.exchange__subtitle {
 .footer__brand p {
   position: relative;
   bottom: 1.5rem;
+  width: 16ch;
 }
 
 .footer__brand p::before {
@@ -854,7 +847,7 @@ h3.exchange__subtitle {
 
 .footer__popular-directions {
   grid-area: popular;
-  margin-right: 2rem;
+  width: 260px;
 }
 
 .footer__popular-directions h4 {
@@ -892,12 +885,13 @@ h3.exchange__subtitle {
 
 .footer__menu {
   grid-area: menu;
+  margin-inline: auto;
+  width: 70%;
 }
 
 .footer__menu-list {
-  column-count: auto;
-  column-width: 7rem;
-  gap: 2rem;
+  column-width: 5rem;
+  gap: 3rem;
 }
 
 .footer__menu-list > li {
@@ -913,7 +907,7 @@ h3.exchange__subtitle {
 }
 
 .footer__sign-up-button,
-.footer__login-in-button {
+.footer__login-button {
   -webkit-transition: var(--default-transition);
   -moz-transition: var(--default-transition);
   -ms-transition: var(--default-transition);
@@ -936,7 +930,7 @@ h3.exchange__subtitle {
   opacity: 0.8;
 }
 
-.footer__login-in-button {  
+.footer__login-button {  
   width: 105px;
   height: 38px;
   border: 2px solid #6DE0F6;
@@ -945,9 +939,9 @@ h3.exchange__subtitle {
   background-color: transparent;
 }
 
-.footer__login-in-button:hover,
-.footer__login-in-button:focus,
-.footer__login-in-button:active {
+.footer__login-button:hover,
+.footer__login-button:focus,
+.footer__login-button:active {
   background-color: rgba(206, 237, 255, 0.15);
 }
 
@@ -967,13 +961,9 @@ h3.exchange__subtitle {
       "menu";
     justify-items: center;
   }
-
-  .footer::before {
-    height: 48rem;
-  }
-
+  
   .footer__brand,
-  .footer__popular-directions {
+  .footer__menu {
     margin-right: 0;
   }
 
@@ -987,6 +977,14 @@ h3.exchange__subtitle {
     text-align: center;
   }
 
+  .footer__menu {
+    width: 100%;
+  }
+
+  .footer__menu-list {
+    column-count: 1;
+  }
+
   .footer__buttons {
     margin-top: 1.5rem;
     flex-direction: column;
@@ -994,7 +992,7 @@ h3.exchange__subtitle {
   }
 
   .footer__sign-up-button,
-  .footer__login-in-button {
+  .footer__login-button {
     margin-right: 0;
     width: 35vw;
   }
@@ -1005,11 +1003,5 @@ h3.exchange__subtitle {
     grid-template-columns: 2fr 2fr 4fr 2fr;
     grid-template-areas: 
       "brand popular menu buttons";
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  .footer__sign-up-button {
-    margin-right: 3vw;
   }
 }
