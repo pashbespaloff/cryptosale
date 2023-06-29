@@ -351,17 +351,14 @@ h3.exchange__subtitle {
     "agree agree";
 }
 
-.exchange__give,
-.exchange__receive {
-  width: 300px;
-}
-
 .exchange__give {
   grid-area: give;
+  width: 300px;
 }
 
 .exchange__receive {
   grid-area: receive;
+  width: 280px;
 }
 
 .exchange__rate,
@@ -379,7 +376,6 @@ h3.exchange__subtitle {
 
 .exchange__swap-container {
   position: relative;
-  left: 280px;
   transform: translateY(80px);
   width: 1.25rem;
   height: 1rem;
@@ -632,7 +628,7 @@ h3.exchange__subtitle {
   }
 
   .exchange__grid-wrapper {
-    max-width: 600px;
+    max-width: 580px;
     margin-inline: auto;
   }
 
@@ -646,7 +642,7 @@ h3.exchange__subtitle {
   }
 
   .exchange__swap-container {
-    left: calc(50% - 20px);
+    left: calc(50% - 10px);
   }
 
   .exchange__illustration {
