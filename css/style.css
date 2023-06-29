@@ -1,5 +1,6 @@
 :root {
   --default-font-size: 16px;
+  --max-width: 1200px;
   --default-transition: all ease-out .25s;
   --radial-gradient-bg: radial-gradient(86.56% 115.41% at 20.09% 53.71%, #2C35A2 1%, #252C88 16%, #1B2167 40%, #15194F 62%, #101540 83%, #0F133B 100%);
   --linear-gradient-bg: linear-gradient(-45deg, #0F133B, #252C88);
@@ -39,11 +40,6 @@ html {
 
 button:focus {
   outline: 0;
-}
-
-.wrapper {
-  width: 90%;
-  max-width: 1200px;
 }
 
 
@@ -104,6 +100,8 @@ button:focus {
   padding-top: 2.25rem;
   align-items: center;
   justify-content: space-between;
+  width: 90%;
+  max-width: var(--max-width);
 }
 
 .header__brand-link {
@@ -132,7 +130,7 @@ button:focus {
 
 .header__menu-list {
   margin: 0;
-  gap: 2.5vw;
+  gap: min(2vw, 2.25rem);
   line-height: var(--logo-size);
 }
 
@@ -166,7 +164,7 @@ button:focus {
 }
 
 .header__sign-up-button {
-  margin-right: 1.5vw;
+  margin-right: min(3rem, 1.5vw);
   border-radius: 20px;
   width: 146px;
   height: 38px;
@@ -299,15 +297,18 @@ button:focus {
 .main {
   position: relative;
   margin-top: 8rem;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* exchange section styles */
 .main__exchange {
   display: grid;
+  margin-inline: auto;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: "exchange illustration";
+  width: 90%;
+  max-width: var(--max-width);
 }
 
 .exchange__form,
@@ -328,13 +329,13 @@ button:focus {
 h2.exchange__title {
   margin-block: 0 1rem;
   font-family: 'Montserrat';
-  font-size: max(2rem, 3vw);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-style: normal;
   font-weight: 700;
 }
 
 h3.exchange__subtitle {
-  margin-block: 0 2rem;
+  margin-block: 0 1rem;
   font-size: 1.15rem;
   font-weight: 400;
 }
@@ -348,6 +349,11 @@ h3.exchange__subtitle {
     "rate commission"
     "button button"
     "agree agree";
+}
+
+.exchange__give,
+.exchange__receive {
+  width: 300px;
 }
 
 .exchange__give {
@@ -372,13 +378,18 @@ h3.exchange__subtitle {
 }
 
 .exchange__swap-container {
-  height: 0;
+  position: relative;
+  left: 280px;
+  transform: translateY(80px);
+  width: 1.25rem;
+  height: 1rem;
 }
 
 .exchange__swap {
   padding: 0;
   width: 1.25rem;
   height: 1rem;
+  vertical-align: super;
   background: url("../imgs/svg/arrows.svg") no-repeat;
   cursor: pointer;
 }
@@ -452,7 +463,7 @@ h3.exchange__subtitle {
   margin-block: 1.7rem;
   margin-inline: auto;
   border-radius: 28px;
-  width: min(50vw, 370px);
+  width: clamp(240px, 50vw, 370px);
   height: 3rem;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -505,6 +516,13 @@ h3.exchange__subtitle {
 
 
 /* exchange section responsive styles */
+@media screen and (max-width: 375px) {
+  .exchange__agreement p {
+    padding-top: 2px;
+    font-size: .8rem;
+  } 
+}
+
 @media screen and (max-width: 767px) { 
   .main__exchange {
     grid-template-columns: 100%;
@@ -540,12 +558,13 @@ h3.exchange__subtitle {
   .exchange__received-currency-input,
   .exchange__given-currency-selector,
   .exchange__received-currency-selector {
-    width: max(50vw, 310px);
+    width: clamp(240px, 50vw, 370px);
   }
 
   .exchange__give,
   .exchange__receive {
     display: grid;
+    width: 100%;
   }
 
   .exchange__give,
@@ -585,7 +604,8 @@ h3.exchange__subtitle {
   }
 
   .exchange__swap-container {
-    transform: translate(calc(50% - 10px), -30px);
+    left: calc(50% - 8px);
+    transform: translateY(185px);
   }
 
   .exchange__swap {
@@ -602,9 +622,23 @@ h3.exchange__subtitle {
 }
 
 @media screen and (min-width: 768px) {
+  .main__exchange {
+    grid-template-areas: "exchange exchange";
+  }
+
+  .exchange__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exchange__grid-wrapper {
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
   .exchange__title,
   .exchange__subtitle {
-    text-align: left;
+    text-align: center;
   }
 
   .exchange__subtitle {
@@ -612,7 +646,7 @@ h3.exchange__subtitle {
   }
 
   .exchange__swap-container {
-    transform: translate(calc(90.5% + 10px), -88px);
+    left: calc(50% - 20px);
   }
 
   .exchange__illustration {
@@ -620,17 +654,16 @@ h3.exchange__subtitle {
   }
 }
 
-@media screen and (min-width: 992px) {
-  .exchange__swap-container {
-    transform: translate(calc(90.5% + 10px), -88px);
-  }
-}
-
 @media screen and (min-width: 1200px) {
-  .exchange__swap-container {
-    transform: translate(calc(90% + 10px), -88px);
+  .main__exchange {
+    grid-template-areas: "exchange illustration";
   }
-  
+
+  .exchange__title,
+  .exchange__subtitle {
+    text-align: left;
+  }
+
   .exchange__illustration {
     display: inline-grid;
   }
@@ -644,30 +677,24 @@ h3.exchange__subtitle {
 
 
 
+
 /* latest applications section styles */
 .main__latest-applications {
   display: block;
   margin-top: 6rem;
+  transform: skewY(2deg);
+  background: #CEEDFF;
 }
 
-.latest-applications__container {
+.latest-applications__wrapper {
   position: relative;
+  transform: skewY(-2deg);
+  margin-inline: auto;
+  width: 90%;
+  max-width: var(--max-width);
 }
 
-.latest-applications__container::before {
-  content: "";
-	position: absolute;
-	left: 0;
-	top: 0;
-  z-index: -1;
-  margin-left: calc(50% - 50vw);
-  width: 100vw;
-	height: 100%;
-	background: #CEEDFF;
-	transform: skewY(2deg);
-}
-
-.latest-applications__container h2 {
+.latest-applications__wrapper h2 {
   padding-top: 3rem;
   margin-bottom: 3.5rem;
   width: 100%;
@@ -723,14 +750,16 @@ h3.exchange__subtitle {
 .latest-applications__swap-container {
   margin-inline: 1.5rem;
   padding: 0;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .latest-applications__swap {
   padding: 0;
   width: 1.25rem;
   height: 1.25rem;
+  vertical-align: middle;
   background: url("../imgs/svg/black-arrows.svg") no-repeat top;
-  transform: translate(0, -3px);
   cursor: pointer;
 }
 
@@ -738,31 +767,34 @@ h3.exchange__subtitle {
 
 
 
-
-
-
-
-
 /* latest applications section responsive styles */
-
 @media screen and (max-width: 767px) { 
-  .latest-applications__container h2 {
-    margin-top: 3rem;
-    text-align: center;
-  }
-
   .latest-applications__grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .latest-applications__container h2 {
-    text-align: left;
+@media screen and (max-width: 991px) { 
+  .latest-applications__wrapper h2 {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .latest-applications__app > div {
+    flex-direction: column;
+  }
+
+  .latest-applications__swap-container {
+    margin-block: 0.625rem;
+    margin-inline: auto;
   }
 }
 
 @media screen and (min-width: 992px) {
+  .latest-applications__wrapper h2 {
+    text-align: left;
+  }
+
   .latest-applications__grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -780,27 +812,22 @@ h3.exchange__subtitle {
 /* footer styles */
 .footer {
   position: relative;
-  display: grid;
-  margin-top: 10rem;
+  margin-top: 6rem;
   padding-bottom: 3rem;
   width: 100%;
   height: auto;
+  background-color: #323232;
+}
+
+.footer__wrapper {
+  display: grid;
   grid-template-columns: 2fr 2fr 4fr 2fr;
   grid-template-rows: auto;
   grid-template-areas: 
     "brand popular menu buttons";
-}
-
-.footer::before {
-  content: "";
-	position: absolute;
-	left: 0;
-	top: 0;
-  z-index: -1;
-  margin-left: calc(50% - 50vw);
-  width: 100vw;
-	height: 100%;
-  background-color: #323232;
+  margin-inline: auto;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .footer__brand,
@@ -916,7 +943,7 @@ h3.exchange__subtitle {
 }
 
 .footer__sign-up-button {
-  margin-right: 1.5vw;
+  margin-right: min(3rem, 1.5vw);
   border-radius: 20px;
   width: 146px;
   height: 38px;
@@ -951,7 +978,7 @@ h3.exchange__subtitle {
 
 /* footer styles responsive styles */
 @media screen and (max-width: 991px) {
-  .footer {
+  .footer__wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
@@ -965,6 +992,10 @@ h3.exchange__subtitle {
   .footer__brand,
   .footer__menu {
     margin-right: 0;
+  }
+
+  .footer__brand {
+    margin-left: 1rem;
   }
 
   .footer__popular-directions > ul {
