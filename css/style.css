@@ -625,6 +625,7 @@ h3.exchange__subtitle {
   .exchange__form {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .exchange__grid-wrapper {
@@ -653,6 +654,10 @@ h3.exchange__subtitle {
 @media screen and (min-width: 1200px) {
   .main__exchange {
     grid-template-areas: "exchange illustration";
+  }
+
+  .exchange__form {
+    width: 580px;
   }
 
   .exchange__title,
