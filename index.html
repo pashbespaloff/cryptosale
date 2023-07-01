@@ -42,6 +42,29 @@
 
         <nav class="header__burger-menu">
           <button class="header__burger-menu-button"></button>
+          <div class="header__burger-menu-window off invisible">
+            <div class="burger-menu-window__content">
+              <div>
+                <span class="burger-menu-window__close">&times;</span>
+                <div class="burger-menu-window__login">
+                  <a href="#">
+                    <div class="burger-menu-window__userhead"></div>
+                  </a>
+                  <a class="burger-menu-window__login-link" href="#">Login</a>
+                </div>
+                <ul class="burger-menu-window__menu-list">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="#">Tariffs</a></li>
+                  <li><a href="#">Reviews</a></li>
+                  <li><a href="#">Rules</a></li>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">For partners</a></li>
+                  <li><a href="#">Contacts</a></li>
+                
+                </ul>
+              </div>
+            </div>
+          </div>
         </nav>
 
       </div>
@@ -92,7 +115,7 @@
             </div>
 
             <div class="exchange__button-container">
-              <button class="exchange__button">Exchange</button>
+              <button class="exchange__button" disabled>Exchange</button>
             </div>
 
             <div class="exchange__agreement">
@@ -107,6 +130,13 @@
         <div class="exchange__illustration"></div>
 
       </section>
+
+      <div class="modal-window off invisible">
+        <div class="modal-window__content">
+          <span class="modal-window__close">&times;</span>
+          <p class="modal-window__text"></p>
+        </div>
+      </div>
 
       <section class="main__latest-applications">
 
@@ -218,5 +248,7 @@
 
     </main>
     <script src="./scripts/visual.js"></script>
+    <script src="./scripts/exchange.js"></script>
+    <script src="./scripts/mobile-menu.js"></script>
   </body>
 </html>
