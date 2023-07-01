@@ -4,7 +4,7 @@ const body = document.querySelector(".body"),
       modalWindow = document.querySelector(".modal-window"),
       modalCloseButton = document.querySelector(".modal-window__close"),
       modalText = document.querySelector(".modal-window__text"),
-      modalStandardText = "This is only for a demonstration",
+      modalStandardText = "This is for demonstration purposes only.",
       modalExchangeSuccessText = "Your money has been exchanged.<br><br>Thank you for using our service!";
 
 
