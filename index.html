@@ -12,174 +12,174 @@
   </head>
 
   <body class="body">
-    <div class="wrapper">
+    <header class="header">
+      <div class="header__dimmed-effect off"></div>
+      <div class="header__wrapper">
 
-      <header class="header">
-        <div class="header__dimmed-effect off"></div>
-        <div class="wrapper header__wrapper">
-
-          <div class="header__brand">
-            <a class="header__brand-link" href="/">
-              <div class="header__brand-logo"></div>
-              <h1 class="header__brand-name">CryptoSale</h1>
-            </a>
-          </div>
-
-          <nav class="header__menu">
-            <ul class="header__menu-list">
-              <li><a href="/">Home</a></li>
-              <li><a href="#">Tariffs</a></li>
-              <li><a href="#">Reviews</a></li>
-              <li><a href="#">Rules</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">For partners</a></li>
-              <li><a href="#">Contacts</a></li>
-            </ul>
-          </nav>
-
-          <div class="header__buttons">
-            <button class="header__sign-up-button">Sign Up</button>
-            <button class="header__login-in-button">Login In</button>
-          </div>
-
-          <nav class="header__burger-menu">
-            <button class="header__burger-menu-button"></button>
-          </nav>
-
+        <div class="header__brand">
+          <a class="header__brand-link" href="/">
+            <div class="header__brand-logo"></div>
+            <h1 class="header__brand-name">CryptoSale</h1>
+          </a>
         </div>
-      </header>
 
-      <main class="main">  
-        <section class="main__exchange">
+        <nav class="header__menu">
+          <ul class="header__menu-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Tariffs</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Rules</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">For partners</a></li>
+            <li><a href="#">Contacts</a></li>
+          </ul>
+        </nav>
 
-          <div class="exchange__form">
-            <h2 class="exchange__title">Currency Exchange Fast&nbsp;&&nbsp;Safe</h2>
-            <h3 class="exchange__subtitle">No extra fee. Account replenishment no&nbsp;longer than&nbsp;15&nbsp;minutes</h3>
+        <div class="header__buttons">
+          <button class="header__sign-up-button">Sign Up</button>
+          <button class="header__login-button">Login</button>
+        </div>
 
-            <div class="exchange__grid-wrapper">
+        <nav class="header__burger-menu">
+          <button class="header__burger-menu-button"></button>
+        </nav>
 
-              <div class="exchange__give">
-                <label for="given-amount">You give</label>
-                <input class="exchange__given-currency-input" id="given-amount">
+      </div>
+    </header>
 
-                <select class="exchange__given-currency-selector" required>
-                  <option value="" hidden>Choose the currency</option>
-                  <option value="1">1</option>
-                </select>
+    <main class="main">  
+      <section class="main__exchange">
 
-                <div class="exchange__swap-container">
-                  <button class="exchange__swap"></button>
+        <div class="exchange__form">
+          <h2 class="exchange__title">Currency Exchange Fast&nbsp;&&nbsp;Safe</h2>
+          <h3 class="exchange__subtitle">No extra fee. Account replenishment no&nbsp;longer than&nbsp;15&nbsp;minutes</h3>
+
+          <div class="exchange__swap-container">
+            <button class="exchange__swap"></button>
+          </div>
+
+          <div class="exchange__grid-wrapper">
+
+            <div class="exchange__give">
+              <label for="given-amount">You give</label>
+              <input class="exchange__given-currency-input" id="given-amount">
+
+              <select class="exchange__given-currency-selector" required>
+                <option value="" hidden>Choose the currency</option>
+                <option value="1">1</option>
+              </select>
+
+            </div>
+
+            <div class="exchange__receive">
+            <label for="received-amount">You receive</label>
+              <input class="exchange__received-currency-input" id="received-amount">
+
+              <select class="exchange__received-currency-selector" required>
+                <option value="" hidden>Choose the currency</option>
+                <option value="1">1</option>
+              </select>
+            </div>
+
+            <div class="exchange__rate">
+              <h4>Rate</h4>
+              <p>1 <span class="gray">RUB</span> = 0.0001 <span class="gray">USD</span></p>
+            </div>
+
+            <div class="exchange__commission">
+              <h4>Commission - 1%</h4>
+              <p>21.27498619 <span class="gray">BCH</span></p>
+            </div>
+
+            <div class="exchange__button-container">
+              <button class="exchange__button">Exchange</button>
+            </div>
+
+            <div class="exchange__agreement">
+              <input class="exchange__agree-checkbox" type="checkbox" id="agree">
+              <label class="exchange__agree-label" for="agree"></label>
+              <p>I agree with <a href="#">Rules and statements</a></p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="exchange__illustration"></div>
+
+      </section>
+
+      <section class="main__latest-applications">
+
+        <div class="latest-applications__wrapper">
+          <h2>Latest applications</h2>
+
+          <div class="latest-applications__grid">
+            <div class="latest-applications__app">
+              <h3>28.07.2020, 12:36</h3>
+
+              <div>
+                <p>0.056600935 <span class="currency">USD</span></p>
+
+                <div class="latest-applications__swap-container">
+                  <button class="latest-applications__swap"></button>
                 </div>
 
+                <p>0.056600935 <span class="currency">USD</span></p>
+              </div>
+            
+            </div>
+            
+            <div class="latest-applications__app">
+              <h3>28.07.2020, 12:36</h3>
+
+              <div>
+                <p>0.056600935 <span class="currency">USD</span></p>
+
+                <div class="latest-applications__swap-container">
+                  <button class="latest-applications__swap"></button>
+                </div>
+
+                <p>0.056600935 <span class="currency">USD</span></p>
               </div>
 
-              <div class="exchange__receive">
-              <label for="received-amount">You receive</label>
-                <input class="exchange__received-currency-input" id="received-amount">
+            </div>
+            
+            <div class="latest-applications__app">
+              <h3>28.07.2020, 12:36</h3>
 
-                <select class="exchange__received-currency-selector" required>
-                  <option value="" hidden>Choose the currency</option>
-                  <option value="1">1</option>
-                </select>
+              <div>
+                <p>0.056600935 <span class="currency">USD</span></p>
+
+                <div class="latest-applications__swap-container">
+                  <button class="latest-applications__swap"></button>
+                </div>
+
+                <p>0.056600935 <span class="currency">USD</span></p>
               </div>
 
-              <div class="exchange__rate">
-                <h4>Rate</h4>
-                <p>1 <span class="gray">RUB</span> = 0.0001 <span class="gray">USD</span></p>
-              </div>
+            </div>
 
-              <div class="exchange__commission">
-                <h4>Commission - 1%</h4>
-                <p>21.27498619 <span class="gray">BCH</span></p>
-              </div>
+            <div class="latest-applications__app">
+              <h3>28.07.2020, 12:36</h3>
+              
+              <div>
+                <p>0.056600935 <span class="currency">USD</span></p>
 
-              <div class="exchange__button-container">
-                <button class="exchange__button">Exchange</button>
-              </div>
+                <div class="latest-applications__swap-container">
+                  <button class="latest-applications__swap"></button>
+                </div>
 
-              <div class="exchange__agreement">
-                <input class="exchange__agree-checkbox" type="checkbox" id="agree">
-                <label class="exchange__agree-label" for="agree"></label>
-                <p>I agree with <a href="#">Rules and statements</a></p>
+                <p>0.056600935 <span class="currency">USD</span></p>
               </div>
 
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="exchange__illustration"></div>
+      <footer class="footer">
+        <div class="footer__wrapper">
 
-        </section>
-
-        <section class="main__latest-applications">
-
-          <div class="latest-applications__container">
-            <h2>Latest applications</h2>
-
-            <div class="latest-applications__grid">
-              <div class="latest-applications__app">
-                <h3>28.07.2020, 12:36</h3>
-
-                <div>
-                  <p>0.056600935 <span class="currency">USD</span></p>
-
-                  <div class="latest-applications__swap-container">
-                    <button class="latest-applications__swap"></button>
-                  </div>
-
-                  <p>0.056600935 <span class="currency">USD</span></p>
-                </div>
-              
-              </div>
-              
-              <div class="latest-applications__app">
-                <h3>28.07.2020, 12:36</h3>
-
-                <div>
-                  <p>0.056600935 <span class="currency">USD</span></p>
-
-                  <div class="latest-applications__swap-container">
-                    <button class="latest-applications__swap"></button>
-                  </div>
-
-                  <p>0.056600935 <span class="currency">USD</span></p>
-                </div>
-
-              </div>
-              
-              <div class="latest-applications__app">
-                <h3>28.07.2020, 12:36</h3>
-
-                <div>
-                  <p>0.056600935 <span class="currency">USD</span></p>
-
-                  <div class="latest-applications__swap-container">
-                    <button class="latest-applications__swap"></button>
-                  </div>
-
-                  <p>0.056600935 <span class="currency">USD</span></p>
-                </div>
-
-              </div>
-
-              <div class="latest-applications__app">
-                <h3>28.07.2020, 12:36</h3>
-                
-                <div>
-                  <p>0.056600935 <span class="currency">USD</span></p>
-
-                  <div class="latest-applications__swap-container">
-                    <button class="latest-applications__swap"></button>
-                  </div>
-
-                  <p>0.056600935 <span class="currency">USD</span></p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer class="footer">
           <div class="footer__brand">
             <div class="footer__brand-logo"></div>
             <h1 class="footer__brand-name">CryptoSale</h1>
@@ -210,12 +210,13 @@
 
           <div class="footer__buttons">
             <button class="footer__sign-up-button">Sign Up</button>
-            <button class="footer__login-in-button">Login In</button>
+            <button class="footer__login-button">Login</button>
           </div>
-        </footer>
 
-      </main>
-    </div>
+        </div>
+      </footer>
+
+    </main>
     <script src="./scripts/visual.js"></script>
   </body>
 </html>
