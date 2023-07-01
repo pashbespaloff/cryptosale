@@ -46,10 +46,6 @@ select:focus {
   outline: 0;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
 
 
 
@@ -346,7 +342,7 @@ select:focus {
   width: max(274px, 40%);
   height: 100%;
   background-color: #CEEDFF;
-  padding: 20px;
+  padding: 1.25rem;
   -webkit-transition: var(--modal-transition);
   -moz-transition: var(--modal-transition);
   -ms-transition: var(--modal-transition);
@@ -711,7 +707,7 @@ h3.exchange__subtitle {
   .exchange__received-currency-input,
   .exchange__given-currency-selector,
   .exchange__received-currency-selector {
-    width: clamp(240px, 50vw, 370px);
+    width: clamp(270px, 70%, 370px);
   }
 
   .exchange__give,
@@ -874,13 +870,13 @@ h3.exchange__subtitle {
 .modal-window__content {
   background-color: #CEEDFF;
   margin: auto;
-  padding: 20px;
+  padding: 1.25rem;
   width: clamp(450px, 50%, 800px);
 }
 
 .modal-window__close {
   position: relative;
-  left: 98%;
+  float: right;
   top: -10px;
   font-size: 1.75rem;
   font-weight: bold;
@@ -900,6 +896,8 @@ h3.exchange__subtitle {
 }
 
 .modal-window__text {
+  padding-left: .625rem;
+  padding-block: 2.5rem 1.25rem;
   font-size: 1.4rem;
   color: var(--black);
 }
@@ -917,20 +915,20 @@ h3.exchange__subtitle {
   .modal-window__content {
     background-color: #CEEDFF;
     margin: 0;
-    padding: 20px;
+    padding: 1.25rem;
     padding-top: 185px;
     width: 100%;
     height: 100%;
   }
 
   .modal-window__close {
-    position: absolute;
-    left: 90%;
-    top: 5.5%;
+    right: 5%;
+    top: -145px;
   }
 
   .modal-window__text {
-    width: 178px;
+    margin: auto;
+    width: 70%;
   }
 }
 

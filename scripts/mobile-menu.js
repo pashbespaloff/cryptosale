@@ -1,4 +1,5 @@
-const burgerMenuButton = document.querySelector(".header__burger-menu-button"),
+const burgerMenuWindow = document.querySelector(".header__burger-menu-window"),
+      burgerMenuButton = document.querySelector(".header__burger-menu-button"),
       burgerMenuCloseButton = document.querySelector(".burger-menu-window__close");
 
 const toggleBurgerMenu = (option) => {
@@ -20,3 +21,4 @@ const toggleBurgerMenu = (option) => {
 
 burgerMenuButton.addEventListener("click", () => toggleBurgerMenu("open"));
 burgerMenuCloseButton.addEventListener("click", () => toggleBurgerMenu("close"));
+burgerMenuWindow.addEventListener("click", (e) => {if (e.target === burgerMenuWindow) toggleBurgerMenu("close")});
