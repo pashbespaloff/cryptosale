@@ -78,40 +78,38 @@
           <h3 class="exchange__subtitle">No extra fee. Account replenishment no&nbsp;longer than&nbsp;15&nbsp;minutes</h3>
 
           <div class="exchange__swap-container">
-            <button class="exchange__swap"></button>
+            <button class="exchange__swap" id="swap-currencies"></button>
           </div>
 
           <div class="exchange__grid-wrapper">
 
             <div class="exchange__give">
               <label for="given-amount">You give</label>
-              <input class="exchange__given-currency-input" id="given-amount">
+              <input class="exchange__given-currency-input" id="given-amount" disabled>
 
-              <select class="exchange__given-currency-selector" required>
-                <option value="" hidden>Choose the currency</option>
-                <option value="1">1</option>
+              <select class="exchange__given-currency-selector" id="given-currency" disabled required>
               </select>
 
             </div>
 
             <div class="exchange__receive">
             <label for="received-amount">You receive</label>
-              <input class="exchange__received-currency-input" id="received-amount">
+              <input class="exchange__received-currency-input" id="received-amount" disabled>
 
-              <select class="exchange__received-currency-selector" required>
-                <option value="" hidden>Choose the currency</option>
-                <option value="1">1</option>
+              <select class="exchange__received-currency-selector" id="received-currency" disabled required>
               </select>
             </div>
 
             <div class="exchange__rate">
               <h4>Rate</h4>
-              <p>1 <span class="gray">RUB</span> = 0.0001 <span class="gray">USD</span></p>
+              <div class="exchange__rate-output">
+              </div>
             </div>
 
             <div class="exchange__commission">
               <h4>Commission - 1%</h4>
-              <p>21.27498619 <span class="gray">BCH</span></p>
+              <div class="exchange__comission-output">
+              </div>
             </div>
 
             <div class="exchange__button-container">

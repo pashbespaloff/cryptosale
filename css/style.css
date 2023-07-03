@@ -513,6 +513,13 @@ h3.exchange__subtitle {
 
 .exchange__rate {
   grid-area: rate;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.exchange__rate-output,
+.exchange__commission-output {
+  display: flex;
 }
 
 .exchange__commission {
@@ -548,14 +555,20 @@ h3.exchange__subtitle {
   letter-spacing: 0.05em;
 }
 
-.gray {
-  color: var(--gray);
+.exchange__rate h4,
+.exchange__commission h4 {
+  width: 100%;
 }
 
 .exchange__rate p,
 .exchange__commission p {
   margin-top: .125rem;
+  line-height: 1.2;
   font-size: 1.125rem;
+}
+
+.gray {
+  color: var(--gray);
 }
 
 .exchange__given-currency-input,
@@ -723,6 +736,11 @@ h3.exchange__subtitle {
     justify-items: center;
   }
 
+  .exchange__rate h4,
+  .exchange__commission h4 {
+    text-align: center;
+  }
+
   .exchange__give label,
   .exchange__receive label {
     margin-bottom: calc(.3125rem * 3);
@@ -750,6 +768,11 @@ h3.exchange__subtitle {
 
   .exchange__rate {
     margin-bottom: 2rem;
+  }
+
+  .exchange__rate-output,
+  .exchange__commission-output {
+    margin-inline: auto;
   }
 
   .exchange__swap-container {
