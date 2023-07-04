@@ -349,8 +349,7 @@ const render = (option) => {
   };
 
 	exchangeRate.innerHTML = 
-  `<p>1&nbsp;<span class="exchange__rate-currency-1 gray">${state.rate.givenCurrency}</span>&nbsp;=&nbsp;
-  <span class="exchange__rate-value">${state.rate.factor}</span>&nbsp;<span class="exchange__rate-currency-2 gray">${state.rate.receivedCurrency}</span></p>`;
+  `<p>1&nbsp;<span class="exchange__rate-currency-1 gray">${state.rate.givenCurrency}</span>&nbsp;=&nbsp;<span class="exchange__rate-value">${state.rate.factor}</span>&nbsp;<span class="exchange__rate-currency-2 gray">${state.rate.receivedCurrency}</span></p>`;
 
 	comission.innerHTML = 
   `<p class="exchange__comission-value">${state.commission.commissionAmount}&nbsp;<span class="exchange__comission-currency gray">${state.rate.receivedCurrency}</span></p>`;
