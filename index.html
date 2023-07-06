@@ -142,7 +142,7 @@
           <h2>Latest applications</h2>
 
           <div class="latest-applications__grid">
-            <div class="latest-applications__app">
+            <div class="latest-applications__app active-slide" data-id="slide-1">
               <h3>28.07.2020, 12:36</h3>
 
               <div>
@@ -157,8 +157,8 @@
             
             </div>
             
-            <div class="latest-applications__app">
-              <h3>28.07.2020, 12:36</h3>
+            <div class="latest-applications__app" data-id="slide-2">
+              <h3>28.07.2020, 12:46</h3>
 
               <div>
                 <p>0.056600935 <span class="currency">USD</span></p>
@@ -172,8 +172,8 @@
 
             </div>
             
-            <div class="latest-applications__app">
-              <h3>28.07.2020, 12:36</h3>
+            <div class="latest-applications__app" data-id="slide-3">
+              <h3>28.07.2020, 12:56</h3>
 
               <div>
                 <p>0.056600935 <span class="currency">USD</span></p>
@@ -187,8 +187,8 @@
 
             </div>
 
-            <div class="latest-applications__app">
-              <h3>28.07.2020, 12:36</h3>
+            <div class="latest-applications__app" data-id="slide-4">
+              <h3>28.07.2020, 13:06</h3>
               
               <div>
                 <p>0.056600935 <span class="currency">USD</span></p>
@@ -199,9 +199,28 @@
 
                 <p>0.056600935 <span class="currency">USD</span></p>
               </div>
-
             </div>
           </div>
+
+          <nav class="latest-applications__slider-buttons">
+            <label class="slider-buttons__label" for="slide-1">
+              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-1" checked>
+              <span class="slider-buttons__button"></span>
+            </label>
+            <label class="slider-buttons__label" for="slide-2">
+              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-2">
+              <span class="slider-buttons__button"></span>
+            </label>
+            <label class="slider-buttons__label" for="slide-3">
+              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-3">
+              <span class="slider-buttons__button"></span>
+            </label>
+            <label class="slider-buttons__label" for="slide-4">
+              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-4">
+              <span class="slider-buttons__button"></span>
+            </label>
+          </nav>
+
         </div>
       </section>
 
@@ -248,5 +267,6 @@
     <script src="./scripts/visual.js"></script>
     <script src="./scripts/exchange.js"></script>
     <script src="./scripts/mobile-menu.js"></script>
+    <script src="./scripts/slider.js"></script>
   </body>
 </html>

@@ -22,6 +22,10 @@ html {
   /* now it won't affect containers' width and won't change containers' actual size */
 }
 
+*:not(input) {
+  caret-color: transparent;
+}
+
 .body {
   display: flex;
   justify-content: center;
@@ -44,6 +48,10 @@ button:focus,
 input:focus,
 select:focus {
   outline: 0;
+}
+
+input:focus {
+  caret-color: var(--black);
 }
 
 
@@ -995,6 +1003,7 @@ h3.exchange__subtitle {
 }
 
 .latest-applications__app {
+  position: relative;
   width: 100%;
   margin-bottom: 4rem;
 }
@@ -1081,6 +1090,79 @@ h3.exchange__subtitle {
 
   .latest-applications__grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+
+
+
+/* slider styles */
+.latest-applications__slider-buttons {
+  position: relative;
+  top: -3rem;
+  display: none;
+  margin-inline: auto;
+  margin-block: 2rem;
+  justify-content: space-between;
+  width: 75px;
+  height: .6rem;
+}
+
+.slider-buttons__radio {
+  position: absolute;
+  width: .6rem;
+  opacity: 0;
+}
+
+.slider-buttons__label {
+  display: block;
+  position: relative;
+  width: .6rem;
+  cursor: pointer;
+}
+
+.slider-buttons__button {
+  position: absolute;
+  height: .6rem;
+  width: .6rem;
+  background-color: var(--gray);
+  border-radius: 50%;
+}
+
+.slider-buttons__label .slider-buttons__radio:checked ~ span {
+  background-color: #6DE0F6;
+}
+
+@media screen and (max-width: 767px) { 
+  .latest-applications__slider-buttons {
+    display: flex;
+  }
+
+  .latest-applications__app:not(.active-slide) {
+    display: none;
+  }
+
+  .latest-applications__app.animate-slide {
+    animation:forwards;
+    animation-name: swipe-right;
+    animation-duration: .35s;
+  }
+
+  @keyframes swipe-right {
+    0% {
+      opacity: 0;
+      right: -10%;
+    }
+
+    50% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 1;
+      right: 0;
+    }
   }
 }
 
