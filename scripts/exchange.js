@@ -41,7 +41,7 @@ const toggleModal = (option, text) => {
   }
 }
 
-exchangeButton.addEventListener("click", () => toggleModal("open", modalExchangeSuccessText));
+// exchangeButton.addEventListener("click", () => toggleModal("open", modalExchangeSuccessText));
 modalCloseButton.addEventListener("click", () => toggleModal("close"));
 modalWindow.addEventListener("click", (e) => {if (e.target === modalWindow) toggleModal("close")});
 
@@ -244,7 +244,8 @@ const givenAmount = document.querySelector(".exchange__given-currency-input"),
       receivedCurrency = document.querySelector(".exchange__received-currency-selector"),
       exchangeRate = document.querySelector(".exchange__rate-output"),
       comission = document.querySelector(".exchange__comission-output"),
-      swapCurrenciesButton = document.querySelector(".exchange__swap");
+      swapCurrenciesButton = document.querySelector(".exchange__swap"),
+      firstSliderRadioButton = document.querySelector(`.slider-buttons__radio[id="slide-1"]`);
 
 let state = {
   givenAmount: 0,
@@ -298,6 +299,8 @@ const init = async() => {
 		givenCurrency.append(option);
 		receivedCurrency.append(optionClone);
 	}
+
+  firstSliderRadioButton.checked = true;
 
   render();
 
@@ -413,7 +416,40 @@ const clearInput = () => {
   return numbersValue;
 };
 
-const exchange = () => {};
+const exchange = () => {
+  const now = new Date();
+
+  let day = now.getDate();
+  if (day < 10) day = `0${day}`;
+
+  let month = now.getMonth();
+  if (month < 10) month = `0${month}`;
+
+  let hours = now.getHours();
+  if (hours < 10) hours = `0${hours}`;
+
+  let minutes = now.getMinutes();
+  if (minutes < 10) minutes = `0${minutes}`;
+
+  const application = {
+    givenAmount: state.givenAmount,
+    givenCurrency: state.givenCurrency,
+    receivedAmount: state.receivedAmount,
+    receivedCurrency: state.receivedCurrency,
+    time: `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`
+  };
+
+  const updateLatestApplications = [...localStorage.getItem("latestApplications"), application];
+  /* здесь что-то не работает */ 
+  localStorage.setItem("latestApplications", JSON.stringify(updateLatestApplications));
+  
+  
+
+  console.log(localStorage.getItem("latestApplications"));
+
+
+  toggleModal("open", modalExchangeSuccessText);
+};
 
 
 
@@ -424,4 +460,4 @@ givenAmount.addEventListener("input", updateState);
 givenCurrency.addEventListener("change", updateState);
 receivedCurrency.addEventListener("change", updateState);
 swapCurrenciesButton.addEventListener("click", updateState);
-// exchangeButton.addEventListener("submit", exchange);
+exchangeButton.addEventListener("click", exchange);

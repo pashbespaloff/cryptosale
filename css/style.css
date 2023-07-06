@@ -1127,11 +1127,11 @@ h3.exchange__subtitle {
 }
 
 .slider-buttons__label > span {
-  -webkit-transition: var(--modal-transition);
-  -moz-transition: var(--modal-transition);
-  -ms-transition: var(--modal-transition);
-  -o-transition: var(--modal-transition);
-  transition: var(--modal-transition);
+  -webkit-transition: var(--default-transition);
+  -moz-transition: var(--default-transition);
+  -ms-transition: var(--default-transition);
+  -o-transition: var(--default-transition);
+  transition: var(--default-transition);
 }
 
 .slider-buttons__button {
@@ -1162,19 +1162,13 @@ h3.exchange__subtitle {
 
 @keyframes appear-from-right {
   0% {
-    overflow: hidden;
-    opacity: 0;
     right: -10%;
-  }
-
-  50% {
-    opacity: 0.3;
+    opacity: 0;
   }
 
   100% {
-    overflow: auto;
-    opacity: 1;
     right: 0;
+    opacity: 1;
   }
 }
 
