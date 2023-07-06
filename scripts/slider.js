@@ -18,4 +18,4 @@ const moveSlide = (e) => {
   }, 500);
 };     
 
-sliderButtons.forEach(item => item.addEventListener("click", moveSlide));
+sliderButtons.forEach(button => button.addEventListener("click", moveSlide));
