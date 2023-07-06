@@ -8,12 +8,9 @@ const moveSlide = (e) => {
     slide.classList.remove("active-slide");
   });
 
-
   for (let i = 0; i < slides.length; i++) {
     const slide = slides[i];
-    if (slide.dataset.id === e.target.id) {
-      slide.classList.add("active-slide");
-    };
+    if (slide.dataset.id === e.target.id) slide.classList.add("active-slide");
   };
 
   setTimeout(() => {
