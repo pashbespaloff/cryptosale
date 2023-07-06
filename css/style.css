@@ -1065,6 +1065,11 @@ h3.exchange__subtitle {
   .latest-applications__grid {
     grid-template-columns: 1fr;
   }
+
+  .latest-applications__app {
+    max-width: 90%;
+    margin-inline: auto;
+  }
 }
 
 @media screen and (max-width: 991px) { 
@@ -1116,10 +1121,17 @@ h3.exchange__subtitle {
 }
 
 .slider-buttons__label {
-  display: block;
   position: relative;
   width: .6rem;
   cursor: pointer;
+}
+
+.slider-buttons__label > span {
+  -webkit-transition: var(--modal-transition);
+  -moz-transition: var(--modal-transition);
+  -ms-transition: var(--modal-transition);
+  -o-transition: var(--modal-transition);
+  transition: var(--modal-transition);
 }
 
 .slider-buttons__button {
@@ -1150,6 +1162,7 @@ h3.exchange__subtitle {
 
 @keyframes appear-from-right {
   0% {
+    overflow: hidden;
     opacity: 0;
     right: -10%;
   }
@@ -1159,6 +1172,7 @@ h3.exchange__subtitle {
   }
 
   100% {
+    overflow: auto;
     opacity: 1;
     right: 0;
   }
