@@ -617,6 +617,7 @@ h3.exchange__subtitle {
 
 .exchange__received-currency-selector,
 .exchange__received-currency-selector:disabled {
+  color: var(--black);
   -webkit-text-fill-color: var(--black);
 }
 
