@@ -1027,13 +1027,13 @@ h3.exchange__subtitle {
 
 .latest-applications__app h3,
 .latest-applications__app p,
-.latest-applications__app .currency {
+.latest-applications__app span {
   color: var(--black);
   text-align: center;
 }
 
 .latest-applications__app h3,
-.latest-applications__app .currency {
+.latest-applications__app span {
   font-size: 1.125rem;
   line-height: 1.2;
 }
@@ -1048,7 +1048,7 @@ h3.exchange__subtitle {
   font-weight: 600;
 }
 
-.latest-applications__app .currency {
+.latest-applications__app span {
   font-weight: 400;
 }
 

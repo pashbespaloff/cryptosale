@@ -238,7 +238,8 @@ const getDataCurrency = async() => {
 	}
 };
 
-const givenAmount = document.querySelector(".exchange__given-currency-input"),
+const exchangeForm = document.querySelector(".exchange__form"),
+      givenAmount = document.querySelector(".exchange__given-currency-input"),
       givenCurrency = document.querySelector(".exchange__given-currency-selector"),
       receivedAmount = document.querySelector(".exchange__received-currency-input"),
       receivedCurrency = document.querySelector(".exchange__received-currency-selector"),
@@ -284,8 +285,10 @@ const init = async() => {
 	state.rates = dataCurrency.conversion_rates;
 	
   // 3 — checking localStorage
-	if (!localStorage.getItem("latestApplications"))
-		localStorage.setItem("latestApplications", JSON.stringify([]));
+	if (!localStorage.getItem("latestApplications")) {
+    const latestApplications = [];
+		localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
+  }
 
   // 4 — filling html with the data
 	for (let key in state.rates) {
@@ -299,6 +302,26 @@ const init = async() => {
 		givenCurrency.append(option);
 		receivedCurrency.append(optionClone);
 	}
+
+  const latestApplications = JSON.parse(localStorage.getItem("latestApplications")),
+        apps = [
+          latestApplications[latestApplications.length - 1],
+          latestApplications[latestApplications.length - 2],
+          latestApplications[latestApplications.length - 3],
+          latestApplications[latestApplications.length - 4],
+        ];
+  
+  for (let i = 0; i < apps.length; i++) {
+    const app = apps[i];
+
+    let appTime = document.querySelector(`.slide-${i + 1}__exchange-time`),
+        appGiven = document.querySelector(`.slide-${i + 1}__given`),
+        appReceived = document.querySelector(`.slide-${i + 1}__received`);
+    
+    appTime.innerHTML = app.time;
+    appGiven.innerHTML = `${app.givenAmount} <span>${app.givenCurrency}</span>`;
+    appReceived.innerHTML = `${app.receivedAmount} <span>${app.receivedCurrency}</span>`;
+  };
 
   firstSliderRadioButton.checked = true;
 
@@ -403,6 +426,10 @@ const updateState = (e) => {
 	render();
 };
 
+
+
+
+
 const clearInput = (input) => {
   const value = input.value;
   let numbersValue = "";
@@ -420,6 +447,10 @@ const clearInput = (input) => {
   input.value = output;
   return output;
 };
+
+
+
+
 
 const exchange = () => {
   const now = new Date();
@@ -444,22 +475,20 @@ const exchange = () => {
     time: `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`
   };
 
-  const updateLatestApplications = [...localStorage.getItem("latestApplications"), application];
-  /* здесь что-то не работает */ 
-  localStorage.setItem("latestApplications", JSON.stringify(updateLatestApplications));
-  
-  
-
-  console.log(localStorage.getItem("latestApplications"));
-
+  let latestApplications = JSON.parse(localStorage.getItem("latestApplications"));
+  latestApplications = [...latestApplications, application];
+  localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
 
   toggleModal("open", modalExchangeSuccessText);
+  
+  setTimeout(() => init(), 666);
 };
 
 
 
 
 
+exchangeForm.addEventListener("submit", (e) => e.preventDefault());
 givenAmount.addEventListener("input", () => clearInput(givenAmount));
 givenAmount.addEventListener("input", updateState);
 givenCurrency.addEventListener("change", updateState);
