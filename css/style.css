@@ -50,6 +50,11 @@ select:focus {
   outline: 0;
 }
 
+input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+  -webkit-text-fill-color: currentColor; /* 1. sets text fill to current `color` for safari */
+  opacity: 1; /* 2. correct opacity on iOS */
+}
+
 input:focus {
   caret-color: var(--black);
 }
@@ -608,6 +613,11 @@ h3.exchange__subtitle {
   background: #CEEDFF url("../imgs/svg/dropdown.svg") no-repeat;
   background-position: right 1rem top 55%;
   cursor: pointer;
+}
+
+.exchange__received-currency-selector,
+.exchange__received-currency-selector:disabled {
+  -webkit-text-fill-color: var(--black);
 }
 
 .exchange__given-currency-selector:invalid:not(:disabled),
