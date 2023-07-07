@@ -357,7 +357,7 @@ const render = (option) => {
 	comission.innerHTML = 
   `<p class="exchange__comission-value">${state.commission.commissionAmount}&nbsp;<span class="exchange__comission-currency gray">${state.rate.receivedCurrency}</span></p>`;
 
-	receivedAmount.value = state.receivedAmount;
+	receivedAmount.value = !isNaN(state.receivedAmount) ? state.receivedAmount : "";
 }
 
 
@@ -407,13 +407,17 @@ const clearInput = () => {
   let numbersValue = "";
 
   for (let i = 0; i < value.length; i++) {
-    const symbol = value[i];
+    let symbol = value[i];
     if (value[0] === "0") numbersValue = numbersValue.substring(1);
+    if (symbol === ",") symbol = ".";
     if (!isNaN(Number(symbol)) || symbol === ".") numbersValue += symbol;
   };
 
-  givenAmount.value = numbersValue;
-  return numbersValue;
+  let output = numbersValue.split(".");
+  output = output.shift() + (output.length ? "." + output.join("") : "");
+
+  givenAmount.value = output;
+  return output;
 };
 
 const exchange = () => {
