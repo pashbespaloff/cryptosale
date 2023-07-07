@@ -52,7 +52,6 @@ select:focus {
 
 input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
   -webkit-text-fill-color: currentColor; /* 1. sets text fill to current `color` for safari */
-  -webkit-opacity: 1;
   opacity: 1; /* 2. correct opacity on iOS */
 }
 
@@ -605,11 +604,10 @@ h3.exchange__subtitle {
   padding-left: 12px;
 }
 
+/* iOS disabled bug fix */
 .exchange__received-currency-input,
 .exchange__received-currency-input:disabled {
-  /* color: var(--black); */
   -webkit-text-fill-color: var(--black);
-  /* -webkit-opacity: 1; */
   opacity: 1;
 }
 
