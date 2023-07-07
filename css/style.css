@@ -605,6 +605,14 @@ h3.exchange__subtitle {
   padding-left: 12px;
 }
 
+.exchange__received-currency-input,
+.exchange__received-currency-input:disabled {
+  /* color: var(--black); */
+  -webkit-text-fill-color: var(--black);
+  /* -webkit-opacity: 1; */
+  opacity: 1;
+}
+
 .exchange__given-currency-selector,
 .exchange__received-currency-selector {
   padding-left: 12px;
@@ -614,13 +622,6 @@ h3.exchange__subtitle {
   background: #CEEDFF url("../imgs/svg/dropdown.svg") no-repeat;
   background-position: right 1rem top 55%;
   cursor: pointer;
-}
-
-.exchange__received-currency-selector,
-.exchange__received-currency-selector:disabled {
-  color: var(--black);
-  -webkit-text-fill-color: var(--black);
-  opacity: 1;
 }
 
 .exchange__given-currency-selector:invalid:not(:disabled),
