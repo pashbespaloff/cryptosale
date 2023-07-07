@@ -314,13 +314,15 @@ const init = async() => {
   for (let i = 0; i < apps.length; i++) {
     const app = apps[i];
 
-    let appTime = document.querySelector(`.slide-${i + 1}__exchange-time`),
-        appGiven = document.querySelector(`.slide-${i + 1}__given`),
-        appReceived = document.querySelector(`.slide-${i + 1}__received`);
-    
-    appTime.innerHTML = app.time;
-    appGiven.innerHTML = `${app.givenAmount} <span>${app.givenCurrency}</span>`;
-    appReceived.innerHTML = `${app.receivedAmount} <span>${app.receivedCurrency}</span>`;
+    if (app) {
+      let appTime = document.querySelector(`.slide-${i + 1}__exchange-time`),
+          appGiven = document.querySelector(`.slide-${i + 1}__given`),
+          appReceived = document.querySelector(`.slide-${i + 1}__received`);
+      
+      appTime.innerHTML = app.time;
+      appGiven.innerHTML = `${app.givenAmount} <span>${app.givenCurrency}</span>`;
+      appReceived.innerHTML = `${app.receivedAmount} <span>${app.receivedCurrency}</span>`;
+    }
   };
 
   firstSliderRadioButton.checked = true;
