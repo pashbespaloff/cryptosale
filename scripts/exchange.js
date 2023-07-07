@@ -403,8 +403,8 @@ const updateState = (e) => {
 	render();
 };
 
-const clearInput = () => {
-  const value = givenAmount.value;
+const clearInput = (input) => {
+  const value = input.value;
   let numbersValue = "";
 
   for (let i = 0; i < value.length; i++) {
@@ -417,7 +417,7 @@ const clearInput = () => {
   let output = numbersValue.split(".");
   output = output.shift() + (output.length ? "." + output.join("") : "");
 
-  givenAmount.value = output;
+  input.value = output;
   return output;
 };
 
@@ -460,7 +460,7 @@ const exchange = () => {
 
 
 
-givenAmount.addEventListener("input", clearInput);
+givenAmount.addEventListener("input", () => clearInput(givenAmount));
 givenAmount.addEventListener("input", updateState);
 givenCurrency.addEventListener("change", updateState);
 receivedCurrency.addEventListener("change", updateState);
