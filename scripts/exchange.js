@@ -456,35 +456,37 @@ const clearInput = (input) => {
 
 
 const exchange = () => {
-  const now = new Date();
+  if (state.givenAmount > 0) {
+    const now = new Date();
 
-  let day = now.getDate();
-  if (day < 10) day = `0${day}`;
+    let day = now.getDate();
+    if (day < 10) day = `0${day}`;
 
-  let month = now.getMonth();
-  if (month < 10) month = `0${month}`;
+    let month = now.getMonth();
+    if (month < 10) month = `0${month}`;
 
-  let hours = now.getHours();
-  if (hours < 10) hours = `0${hours}`;
+    let hours = now.getHours();
+    if (hours < 10) hours = `0${hours}`;
 
-  let minutes = now.getMinutes();
-  if (minutes < 10) minutes = `0${minutes}`;
+    let minutes = now.getMinutes();
+    if (minutes < 10) minutes = `0${minutes}`;
 
-  const application = {
-    givenAmount: state.givenAmount,
-    givenCurrency: state.givenCurrency,
-    receivedAmount: state.receivedAmount,
-    receivedCurrency: state.receivedCurrency,
-    time: `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`
-  };
+    const application = {
+      givenAmount: state.givenAmount,
+      givenCurrency: state.givenCurrency,
+      receivedAmount: state.receivedAmount,
+      receivedCurrency: state.receivedCurrency,
+      time: `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`
+    };
 
-  let latestApplications = JSON.parse(localStorage.getItem("latestApplications"));
-  latestApplications = [...latestApplications, application];
-  localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
+    let latestApplications = JSON.parse(localStorage.getItem("latestApplications"));
+    latestApplications = [...latestApplications, application];
+    localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
 
-  toggleModal("open", modalExchangeSuccessText);
-  
-  setTimeout(() => init(), 666);
+    toggleModal("open", modalExchangeSuccessText);
+    
+    setTimeout(() => init(), 666);
+  }
 };
 
 
