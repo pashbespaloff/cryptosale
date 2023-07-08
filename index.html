@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Currency exchange fast & safe.
+    No extra fee. Account replenishment no longer than 15 minutes.">
     <title>CryptoSale: Currency Exchange Fast & Free</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="icon" type="image/x-icon" href="./imgs/svg/cryptosale-logo.svg">
@@ -17,7 +19,7 @@
       <div class="header__wrapper">
 
         <div class="header__brand">
-          <a class="header__brand-link" href="/">
+          <a class="header__brand-link" href="/" aria-label="Main page">
             <div class="header__brand-logo"></div>
             <h1 class="header__brand-name">CryptoSale</h1>
           </a>
@@ -41,11 +43,11 @@
         </div>
 
         <nav class="header__burger-menu">
-          <button class="header__burger-menu-button"></button>
+          <button class="header__burger-menu-button" name="menu"></button>
           <div class="header__burger-menu-window off invisible">
             <div class="burger-menu-window__content">
               <div>
-                <span class="burger-menu-window__close">&times;</span>
+                <span class="burger-menu-window__close" aria-label="Close">&times;</span>
                 <div class="burger-menu-window__login">
                   <a href="#">
                     <div class="burger-menu-window__userhead"></div>
@@ -76,7 +78,7 @@
           <h3 class="exchange__subtitle">No extra fee. Account replenishment no&nbsp;longer than&nbsp;15&nbsp;minutes</h3>
 
           <div class="exchange__swap-container">
-            <button class="exchange__swap" id="swap-currencies"></button>
+            <button class="exchange__swap" name="swap-currencies" id="swap-currencies"></button>
           </div>
 
           <div class="exchange__grid-wrapper">
@@ -129,7 +131,7 @@
 
       <div class="modal-window off invisible">
         <div class="modal-window__content">
-          <span class="modal-window__close">&times;</span>
+          <span class="modal-window__close" aria-label="Close">&times;</span>
           <p class="modal-window__text"></p>
         </div>
       </div>
@@ -145,11 +147,7 @@
 
               <div>
                 <p class="slide-1__given">0.056600935 <span>USD</span></p>
-
-                <div class="latest-applications__swap-container">
-                  <button class="latest-applications__swap"></button>
-                </div>
-
+                <div class="latest-applications__swap"></div>
                 <p class="slide-1__received">0.056600935 <span>USD</span></p>
               </div>
             
@@ -160,11 +158,7 @@
 
               <div>
                 <p class="slide-2__given">0.056600935 <span>USD</span></p>
-
-                <div class="latest-applications__swap-container">
-                  <button class="latest-applications__swap"></button>
-                </div>
-
+                <div class="latest-applications__swap"></div>
                 <p class="slide-2__received">0.056600935 <span>USD</span></p>
               </div>
 
@@ -175,11 +169,7 @@
 
               <div>
                 <p class="slide-3__given">0.056600935 <span>USD</span></p>
-
-                <div class="latest-applications__swap-container">
-                  <button class="latest-applications__swap"></button>
-                </div>
-
+                <div class="latest-applications__swap"></div>
                 <p class="slide-3__received">0.056600935 <span>USD</span></p>
               </div>
 
@@ -190,11 +180,7 @@
               
               <div>
                 <p class="slide-4__given">0.056600935 <span>USD</span></p>
-
-                <div class="latest-applications__swap-container">
-                  <button class="latest-applications__swap"></button>
-                </div>
-
+                <div class="latest-applications__swap"></div>
                 <p class="slide-4__received">0.056600935 <span>USD</span></p>
               </div>
             </div>
@@ -202,19 +188,19 @@
 
           <nav class="latest-applications__slider-buttons">
             <label class="slider-buttons__label" for="slide-1">
-              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-1" checked>
+              <input class="slider-buttons__radio" type="radio" name="slide" aria-label="Latest application 1" id="slide-1" checked>
               <span class="slider-buttons__button"></span>
             </label>
             <label class="slider-buttons__label" for="slide-2">
-              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-2">
+              <input class="slider-buttons__radio" type="radio" name="slide" aria-label="Latest application 2" id="slide-2">
               <span class="slider-buttons__button"></span>
             </label>
             <label class="slider-buttons__label" for="slide-3">
-              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-3">
+              <input class="slider-buttons__radio" type="radio" name="slide" aria-label="Latest application 3" id="slide-3">
               <span class="slider-buttons__button"></span>
             </label>
             <label class="slider-buttons__label" for="slide-4">
-              <input class="slider-buttons__radio" type="radio" name="slide" id="slide-4">
+              <input class="slider-buttons__radio" type="radio" name="slide" aria-label="Latest application 4" id="slide-4">
               <span class="slider-buttons__button"></span>
             </label>
           </nav>
@@ -232,7 +218,7 @@
           </div>
 
           <div class="footer__popular-directions">
-            <h4>Popular directions of&nbsp;exchange</h4>
+            <h2>Popular directions of&nbsp;exchange</h2>
               <ul>
                 <li><a href="#">Exchange Bitcoin to&nbsp;Qiwi</a></li>
                 <li><a href="#">Exchange Sber to&nbsp;Bitcoin</a></li>

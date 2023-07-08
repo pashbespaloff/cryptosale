@@ -1052,20 +1052,12 @@ h3.exchange__subtitle {
   font-weight: 400;
 }
 
-.latest-applications__swap-container {
+.latest-applications__swap {
   margin-inline: 1.5rem;
   padding: 0;
   width: 1.25rem;
-  height: 1.25rem;
-}
-
-.latest-applications__swap {
-  padding: 0;
-  width: 1.25rem;
-  height: 1.25rem;
-  vertical-align: middle;
-  background: url("../imgs/svg/black-arrows.svg") no-repeat top;
-  cursor: pointer;
+  height: 1.65rem;
+  background: url("../imgs/svg/black-arrows.svg") no-repeat center;
 }
 
 
@@ -1094,7 +1086,7 @@ h3.exchange__subtitle {
     flex-direction: column;
   }
 
-  .latest-applications__swap-container {
+  .latest-applications__swap {
     margin-block: 0.625rem;
     margin-inline: auto;
   }
@@ -1261,7 +1253,7 @@ h3.exchange__subtitle {
   width: 260px;
 }
 
-.footer__popular-directions h4 {
+.footer__popular-directions h2 {
   margin-bottom: .75rem;
 }
 
@@ -1383,7 +1375,7 @@ h3.exchange__subtitle {
     padding-left: 0;
   }
 
-  .footer__popular-directions h4,
+  .footer__popular-directions h2,
   .footer__popular-directions > ul > li,
   .footer__menu-list > li {
     text-align: center;

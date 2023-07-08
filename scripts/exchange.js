@@ -325,6 +325,7 @@ const init = async() => {
     }
   };
 
+  exchangeAgreeCheckbox.checked = false;
   firstSliderRadioButton.checked = true;
 
   render();
