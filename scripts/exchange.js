@@ -11,16 +11,6 @@ const body = document.querySelector(".body"),
 
 
 
-/* empty links binding */
-const emptyLinks = document.querySelectorAll('[href="#"'),
-      emptyButtons = document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)");
-emptyLinks.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
-emptyButtons.forEach(button => button.addEventListener("click", () => toggleModal("open", modalStandardText)));
-
-
-
-
-
 /* modal window component */
 const toggleModal = (option, text) => {
   const changeModalText = (text) => modalText.innerHTML = text;
@@ -37,7 +27,6 @@ const toggleModal = (option, text) => {
   }
 }
 
-// exchangeButton.addEventListener("click", () => toggleModal("open", modalExchangeSuccessText));
 modalCloseButton.addEventListener("click", () => toggleModal("close"));
 modalWindow.addEventListener("click", (e) => {if (e.target === modalWindow) toggleModal("close")});
 
@@ -50,16 +39,41 @@ exchangeAgreeCheckbox.addEventListener("change", () => {
 
 
 
-
-
-
-
 /* exchange component */
+const exchangeForm = document.querySelector(".exchange__form"),
+      givenAmount = document.querySelector(".exchange__given-currency-input"),
+      givenCurrency = document.querySelector(".exchange__given-currency-selector"),
+      receivedAmount = document.querySelector(".exchange__received-currency-input"),
+      receivedCurrency = document.querySelector(".exchange__received-currency-selector"),
+      exchangeRate = document.querySelector(".exchange__rate-output"),
+      comission = document.querySelector(".exchange__comission-output"),
+      swapCurrenciesButton = document.querySelector(".exchange__swap"),
+      firstSliderRadioButton = document.querySelector(`.slider-buttons__radio[id="slide-1"]`);
+
+let state = {
+  givenAmount: 0,
+  receivedAmount: 0,
+  givenCurrency: "USD",
+  receivedCurrency: "USD",
+  rates: {},
+
+  rate: {
+    givenCurrency: "USD",
+    factor: 1,
+    receivedCurrency: "USD"
+  },
+
+  commission: {
+    commissionAmount: 0,
+    commissionCurrency: "USD"
+  }
+};
+
 const getDataCurrency = async() => {
-	// let url = 'https://v6.exchangerate-api.com/v6/6d90771bf7d7e8bd09657c9a/latest/USD';
-	// let response = await fetch(url);
-	// return await response.json()
-	return {
+  // let url = 'https://v6.exchangerate-api.com/v6/6d90771bf7d7e8bd09657c9a/latest/USD';
+  // let response = await fetch(url);
+  // return await response.json()
+  return {
     "result": "success",
     "documentation": "https://www.exchangerate-api.com/docs",
     "terms_of_use": "https://www.exchangerate-api.com/terms",
@@ -231,41 +245,8 @@ const getDataCurrency = async() => {
       "ZMW":17.0670,
       "ZWL":242.0516
     }
-	}
-};
-
-const exchangeForm = document.querySelector(".exchange__form"),
-      givenAmount = document.querySelector(".exchange__given-currency-input"),
-      givenCurrency = document.querySelector(".exchange__given-currency-selector"),
-      receivedAmount = document.querySelector(".exchange__received-currency-input"),
-      receivedCurrency = document.querySelector(".exchange__received-currency-selector"),
-      exchangeRate = document.querySelector(".exchange__rate-output"),
-      comission = document.querySelector(".exchange__comission-output"),
-      swapCurrenciesButton = document.querySelector(".exchange__swap"),
-      firstSliderRadioButton = document.querySelector(`.slider-buttons__radio[id="slide-1"]`);
-
-let state = {
-  givenAmount: 0,
-  receivedAmount: 0,
-  givenCurrency: "USD",
-  receivedCurrency: "USD",
-  rates: {},
-
-  rate: {
-    givenCurrency: "USD",
-    factor: 1,
-    receivedCurrency: "USD"
-  },
-
-  commission: {
-    commissionAmount: 0,
-    commissionCurrency: "USD"
   }
 };
-
-
-
-
 
 const init = async() => {
 	// 1 — getting the data
@@ -330,8 +311,6 @@ const init = async() => {
 	givenCurrency.removeAttribute("disabled");
 	receivedCurrency.removeAttribute("disabled");
 }
-
-init();
 
 
 
@@ -495,3 +474,19 @@ givenCurrency.addEventListener("change", updateState);
 receivedCurrency.addEventListener("change", updateState);
 swapCurrenciesButton.addEventListener("click", updateState);
 exchangeButton.addEventListener("click", exchange);
+
+
+
+
+
+/* empty links binding */
+const emptyLinks = document.querySelectorAll('[href="#"'),
+      emptyButtons = document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)");
+emptyLinks.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
+emptyButtons.forEach(button => button.addEventListener("click", () => toggleModal("open", modalStandardText)));
+
+
+
+
+
+init();
