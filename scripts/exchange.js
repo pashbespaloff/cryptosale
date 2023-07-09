@@ -29,15 +29,11 @@ const toggleModal = (option, text) => {
     changeModalText(text);
 
     modalWindow.classList.replace("invisible", "visible");
-    setTimeout(() => {
-      modalWindow.classList.replace("off", "on");
-    }, 10);
+    setTimeout(() => modalWindow.classList.replace("off", "on"), 10);
 
   } else if (option === "close") {
     modalWindow.classList.replace("on", "off");
-    setTimeout(() => {
-      modalWindow.classList.replace("visible", "invisible");
-    }, 360);
+    setTimeout(() => modalWindow.classList.replace("visible", "invisible"), 360);
   }
 }
 
@@ -254,7 +250,6 @@ let state = {
   givenCurrency: "USD",
   receivedCurrency: "USD",
   rates: {},
-  checkbox: false,
 
   rate: {
     givenCurrency: "USD",
