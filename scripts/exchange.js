@@ -12,10 +12,10 @@ const body = document.querySelector(".body"),
 
 
 /* empty links binding */
-const links = document.querySelectorAll('[href="#"'),
-      buttons = document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)");
-links.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
-buttons.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
+const emptyLinks = document.querySelectorAll('[href="#"'),
+      emptyButtons = document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)");
+emptyLinks.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
+emptyButtons.forEach(button => button.addEventListener("click", () => toggleModal("open", modalStandardText)));
 
 
 
