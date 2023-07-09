@@ -580,7 +580,9 @@ h3.exchange__subtitle {
   font-size: 1.125rem;
 }
 
-.gray {
+.exchange__rate-currency-1,
+.exchange__rate-currency-2,
+.exchange__comission-currency {
   color: var(--gray);
 }
 
