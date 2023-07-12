@@ -37,7 +37,6 @@ html {
   color: #fff;
   line-height: 1.2;
   background: var(--radial-gradient-bg) no-repeat center center fixed;
-  overscroll-behavior-y: none;
 }
 
 .body a {
