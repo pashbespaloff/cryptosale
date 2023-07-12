@@ -346,8 +346,8 @@ const calcReceivedAmount = () => {
 /* render function */
 const render = (option) => {
   if (option === "swap-currencies") {
-    const givenCurrencyClone = givenCurrency.value;
-    givenCurrency.value = receivedCurrency.value;
+    const givenCurrencyClone = state.givenCurrency;
+    givenCurrency.value = state.receivedCurrency;
     receivedCurrency.value = givenCurrencyClone;
   };
 
