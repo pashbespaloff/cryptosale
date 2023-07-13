@@ -58,6 +58,27 @@ input:focus {
   caret-color: var(--black);
 }
 
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] ~ label {
+  transform: translate(0, 1px);
+  margin-right: .5rem;
+  border: 1px solid #CBCBCB;
+  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  caret-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked ~ label {
+  background: url("../imgs/svg/checked.svg") no-repeat center;
+}
+
 
 
 
@@ -665,27 +686,6 @@ h3.exchange__subtitle {
   grid-area: agree;
   justify-content: center;
   width: 100%;
-}
-
-.exchange__agree-checkbox {
-  display: none;
-}
-
-.exchange__agree-label {
-  transform: translate(0, 1px);
-  margin-right: .5rem;
-  border: 1px solid #CBCBCB;
-  border-radius: 4px;
-  width: 16px;
-  height: 16px;
-  caret-color: transparent;
-  user-select: none;
-  -webkit-user-select: none;
-  cursor: pointer;
-}
-
-.exchange__agree-checkbox:checked ~ .exchange__agree-label {
-  background: url("../imgs/svg/checked.svg") no-repeat center;
 }
 
 
