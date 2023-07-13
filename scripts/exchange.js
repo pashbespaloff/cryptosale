@@ -1,38 +1,27 @@
-const body = document.querySelector(".body"),
-      exchangeAgreeCheckbox = document.querySelector(".exchange__agree-checkbox"),
-      exchangeButton = document.querySelector(".exchange__button"),
-      modalWindow = document.querySelector(".modal-window"),
+/* modal window component */
+const modalWindow = document.querySelector(".modal-window"),
       modalCloseButton = document.querySelector(".modal-window__close"),
       modalText = document.querySelector(".modal-window__text"),
       modalStandardText = "This is for demonstration purposes only.",
       modalExchangeSuccessText = "Your money has been exchanged.<br><br>Thank you for using our service!";
 
+const openModal = (text) => {
+  modalText.innerHTML = text;
+  modalWindow.classList.replace("invisible", "visible");
+  setTimeout(() => modalWindow.classList.replace("off", "on"), 10);
+};
+
+const closeModal = () => {
+  modalWindow.classList.replace("on", "off");
+  setTimeout(() => modalWindow.classList.replace("visible", "invisible"), 360);
+};
+
+modalCloseButton.addEventListener("click", closeModal);
+modalWindow.addEventListener("click", (e) => (e.target === modalWindow) && closeModal());
 
 
 
 
-/* modal window component */
-const toggleModal = (option, text) => {
-  const changeModalText = (text) => modalText.innerHTML = text;
-
-  if (option === "open") {
-    changeModalText(text);
-
-    modalWindow.classList.replace("invisible", "visible");
-    setTimeout(() => modalWindow.classList.replace("off", "on"), 10);
-
-  } else if (option === "close") {
-    modalWindow.classList.replace("on", "off");
-    setTimeout(() => modalWindow.classList.replace("visible", "invisible"), 360);
-  }
-}
-
-modalCloseButton.addEventListener("click", () => toggleModal("close"));
-modalWindow.addEventListener("click", (e) => {if (e.target === modalWindow) toggleModal("close")});
-
-exchangeAgreeCheckbox.addEventListener("change", () => {
-  exchangeButton.disabled = (exchangeAgreeCheckbox.checked === false) ? true : false
-});
 
 
 
@@ -48,7 +37,8 @@ const exchangeForm = document.querySelector(".exchange__form"),
       exchangeRate = document.querySelector(".exchange__rate-output"),
       comission = document.querySelector(".exchange__comission-output"),
       swapCurrenciesButton = document.querySelector(".exchange__swap"),
-      firstSliderRadioButton = document.querySelector(`.slider-buttons__radio[id="slide-1"]`);
+      rulesCheckbox = document.querySelector(".exchange__agree-checkbox"),
+      exchangeButton = document.querySelector(".exchange__button");
 
 let state = {
   givenAmount: 0,
@@ -248,8 +238,7 @@ const getDataCurrency = async() => {
   }
 };
 
-const init = async() => {
-	// 1 — getting the data
+const getData = async() => {
 	// production
 	// const request = await getDataCurrency();
 	// const dataCurrency = request.json();
@@ -257,39 +246,44 @@ const init = async() => {
 	// test
 	const dataCurrency = await getDataCurrency();
 
-	// 2 — processing the data
 	state.rates = dataCurrency.conversion_rates;
-	
-  // 3 — checking localStorage
+
+  fillCurrenciesData();
+};
+
+const checkLocalStorage = () => {
 	if (!localStorage.getItem("latestApplications")) {
     const latestApplications = [];
 		localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
-  }
+  } else {
+    const applications = JSON.parse(localStorage.getItem("latestApplications"));
+    localStorage.setItem("latestApplications", JSON.stringify(applications.slice(-4)));
+  };
+};
 
-  // 4 — filling html with the data
+const fillCurrenciesData = () => {
 	for (let key in state.rates) {
 		const option = document.createElement("option");
 		option.classList.add("currency-option");
 		option.value = key;
 		option.textContent = key;
-
-		const optionClone = option.cloneNode(true);
-
 		givenCurrency.append(option);
-		receivedCurrency.append(optionClone);
-	}
+	};
 
-  const latestApplications = JSON.parse(localStorage.getItem("latestApplications")),
-        apps = [
-          latestApplications[latestApplications.length - 1],
-          latestApplications[latestApplications.length - 2],
-          latestApplications[latestApplications.length - 3],
-          latestApplications[latestApplications.length - 4],
+  receivedCurrency.innerHTML = givenCurrency.innerHTML;
+};
+
+const fillLatestApplications = () => {
+  const applications = JSON.parse(localStorage.getItem("latestApplications")),
+        appsArray = [
+          applications[applications.length - 1],
+          applications[applications.length - 2],
+          applications[applications.length - 3],
+          applications[applications.length - 4],
         ];
   
-  for (let i = 0; i < apps.length; i++) {
-    const app = apps[i];
-
+  for (let i = 0; i < appsArray.length; i++) {
+    const app = appsArray[i];
     if (app) {
       let appTime = document.querySelector(`.slide-${i + 1}__exchange-time`),
           appGiven = document.querySelector(`.slide-${i + 1}__given`),
@@ -300,17 +294,21 @@ const init = async() => {
       appReceived.innerHTML = `${app.receivedAmount} <span>${app.receivedCurrency}</span>`;
     }
   };
+};
 
-  exchangeAgreeCheckbox.checked = false;
-  firstSliderRadioButton.checked = true;
-
-  render();
-
-  // 5 — unblock the ui
+const unblockUI = () => {
   givenAmount.removeAttribute("disabled");
 	givenCurrency.removeAttribute("disabled");
 	receivedCurrency.removeAttribute("disabled");
-}
+};
+
+const init = () => {	
+  getData();
+  checkLocalStorage();
+  fillLatestApplications();
+  render();
+  unblockUI();
+};
 
 
 
@@ -343,28 +341,6 @@ const calcReceivedAmount = () => {
 
 
 
-/* render function */
-const render = (option) => {
-  if (option === "swap-currencies") {
-    const givenCurrencyClone = state.givenCurrency;
-    givenCurrency.value = state.receivedCurrency;
-    receivedCurrency.value = givenCurrencyClone;
-  };
-
-	exchangeRate.innerHTML = 
-  `<p>1&nbsp;<span class="exchange__rate-currency-1">${state.rate.givenCurrency}</span>&nbsp;=&nbsp;<span class="exchange__rate-value">${state.rate.factor}</span>&nbsp;<span class="exchange__rate-currency-2">${state.rate.receivedCurrency}</span></p>`;
-
-	comission.innerHTML = !isNaN(state.commission.commissionAmount)
-    ? `<p class="exchange__comission-value">${state.commission.commissionAmount}&nbsp;<span class="exchange__comission-currency">${state.rate.receivedCurrency}</span></p>`
-    : "";
-
-	receivedAmount.value = !isNaN(state.receivedAmount) ? state.receivedAmount : "";
-}
-
-
-
-
-
 /* event handlers */
 const updateState = (e) => {
   switch(e.target.id) {
@@ -385,27 +361,22 @@ const updateState = (e) => {
     case("swap-currencies"):
       const givenCurrencyClone = state.givenCurrency;
       const rateGivenCurrencyClone = state.rate.givenCurrency;
-
       state.givenCurrency = state.receivedCurrency;
       state.receivedCurrency = givenCurrencyClone;
       state.rate.givenCurrency = state.rate.receivedCurrency;
       state.rate.receivedCurrency = rateGivenCurrencyClone;
-      render("swap-currencies");
       break;
     
     default:
       console.log("Sorry, the exchange cannot be processed");
-  }
+  };
 
+  (e.target.id === "swap-currencies") && swapRender();
   calcFactor();
 	calcCommission();
 	calcReceivedAmount();
 	render();
 };
-
-
-
-
 
 const clearInput = (input) => {
   const value = input.value;
@@ -425,68 +396,110 @@ const clearInput = (input) => {
   return output;
 };
 
+const getCurrentTime = () => {
+  const now = new Date();
 
+  let day = now.getDate();
+  if (day < 10) day = `0${day}`;
 
+  let month = now.getMonth();
+  if (month < 10) month = `0${month}`;
 
+  let hours = now.getHours();
+  if (hours < 10) hours = `0${hours}`;
+
+  let minutes = now.getMinutes();
+  if (minutes < 10) minutes = `0${minutes}`;
+
+  return `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`;
+};
 
 const exchange = () => {
   if (state.givenAmount > 0) {
-    const now = new Date();
-
-    let day = now.getDate();
-    if (day < 10) day = `0${day}`;
-
-    let month = now.getMonth();
-    if (month < 10) month = `0${month}`;
-
-    let hours = now.getHours();
-    if (hours < 10) hours = `0${hours}`;
-
-    let minutes = now.getMinutes();
-    if (minutes < 10) minutes = `0${minutes}`;
-
     const application = {
       givenAmount: state.givenAmount,
       givenCurrency: state.givenCurrency,
       receivedAmount: state.receivedAmount,
       receivedCurrency: state.receivedCurrency,
-      time: `${day}.${month}.${now.getFullYear()}, ${hours}:${minutes}`
+      time: getCurrentTime()
     };
 
     let latestApplications = JSON.parse(localStorage.getItem("latestApplications"));
     latestApplications = [...latestApplications, application];
     localStorage.setItem("latestApplications", JSON.stringify(latestApplications));
 
-    toggleModal("open", modalExchangeSuccessText);
+    openModal(modalExchangeSuccessText);
     
-    setTimeout(() => init(), 666);
-  }
+    setTimeout(() => {
+      fillLatestApplications();
+      resetExchangeComponent();
+    }, 420);
+  };
+};
+
+const resetExchangeComponent = () => {
+  givenAmount.value = "";
+  receivedAmount.value = "0";
+  rulesCheckbox.checked = false;
+  exchangeButton.disabled = true;
 };
 
 
 
 
 
-exchangeForm.addEventListener("submit", (e) => e.preventDefault());
-givenAmount.addEventListener("input", () => clearInput(givenAmount));
-givenAmount.addEventListener("input", updateState);
-givenCurrency.addEventListener("change", updateState);
-receivedCurrency.addEventListener("change", updateState);
-swapCurrenciesButton.addEventListener("click", updateState);
-exchangeButton.addEventListener("click", exchange);
+/* render functions */
+const swapRender = () => {
+  givenCurrency.value = state.givenCurrency;
+  receivedCurrency.value = state.receivedCurrency;
+};
+
+const render = () => {
+	exchangeRate.innerHTML = 
+  `<p>1&nbsp;<span class="exchange__rate-currency-1">${state.rate.givenCurrency}</span>&nbsp;=&nbsp;<span class="exchange__rate-value">${state.rate.factor}</span>&nbsp;<span class="exchange__rate-currency-2">${state.rate.receivedCurrency}</span></p>`;
+
+	comission.innerHTML = !isNaN(state.commission.commissionAmount)
+    ? `<p class="exchange__comission-value">${state.commission.commissionAmount}&nbsp;<span class="exchange__comission-currency">${state.rate.receivedCurrency}</span></p>`
+    : "";
+
+	receivedAmount.value = !isNaN(state.receivedAmount) ? state.receivedAmount : "";
+};
+
+
+
+
 
 
 
 
 
 /* empty links binding */
-const emptyLinks = document.querySelectorAll('[href="#"'),
-      emptyButtons = document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)");
-emptyLinks.forEach(link => link.addEventListener("click", () => toggleModal("open", modalStandardText)));
-emptyButtons.forEach(button => button.addEventListener("click", () => toggleModal("open", modalStandardText)));
+const emptyLinks = [
+  ...document.querySelectorAll('[href="/"'),
+  ...document.querySelectorAll('[href="#"'),
+  ...document.querySelectorAll("BUTTON:not(.exchange__button, .header__burger-menu-button, .exchange__swap)")
+];
+
+emptyLinks.forEach(link => link.addEventListener("click", (e) => {
+  e.preventDefault();
+  openModal(modalStandardText);
+}));
 
 
 
 
+
+/* event listeners */
+exchangeForm.addEventListener("submit", (e) => e.preventDefault());
+givenAmount.addEventListener("input", () => clearInput(givenAmount));
+givenAmount.addEventListener("input", updateState);
+givenCurrency.addEventListener("change", updateState);
+receivedCurrency.addEventListener("change", updateState);
+swapCurrenciesButton.addEventListener("click", updateState);
+
+rulesCheckbox.addEventListener("change", 
+  () => exchangeButton.disabled = (rulesCheckbox.checked === false) ? true : false
+);
+exchangeButton.addEventListener("click", exchange);
 
 init();
