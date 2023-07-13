@@ -307,6 +307,7 @@ const init = () => {
   checkLocalStorage();
   fillLatestApplications();
   render();
+  resetExchangeComponent();
   unblockUI();
 };
 
