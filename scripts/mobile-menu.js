@@ -1,22 +1,21 @@
-const burgerMenuButton = document.querySelector(".header__burger-menu-button"),
+const burgerMenuWindow = document.querySelector(".header__burger-menu-window"),
+      burgerMenuButton = document.querySelector(".header__burger-menu-button"),
       burgerMenuCloseButton = document.querySelector(".burger-menu-window__close");
 
-const toggleBurgerMenu = (option) => {
-  const menu = document.querySelector(".header__burger-menu-window");
+const openMenu = () => {
+  burgerMenuWindow.classList.replace("invisible", "visible");
+  setTimeout(() => {
+    burgerMenuWindow.classList.replace("off", "on");
+  }, 10);
+};
 
-  if (option === "open") {
-    menu.classList.replace("invisible", "visible");
-    setTimeout(() => {
-      menu.classList.replace("off", "on");
-    }, 10);
+const closeMenu = () => {
+  burgerMenuWindow.classList.replace("on", "off");
+  setTimeout(() => {
+    burgerMenuWindow.classList.replace("visible", "invisible");
+  }, 360);
+};
 
-  } else if (option === "close") {
-    menu.classList.replace("on", "off");
-    setTimeout(() => {
-      menu.classList.replace("visible", "invisible");
-    }, 360);
-  }
-}
-
-burgerMenuButton.addEventListener("click", () => toggleBurgerMenu("open"));
-burgerMenuCloseButton.addEventListener("click", () => toggleBurgerMenu("close"));
+burgerMenuButton.addEventListener("click", openMenu);
+burgerMenuCloseButton.addEventListener("click", closeMenu);
+burgerMenuWindow.addEventListener("click", (e) => (e.target === burgerMenuWindow) && closeMenu());

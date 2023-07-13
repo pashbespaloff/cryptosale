@@ -4,10 +4,10 @@
   --default-transition: all ease-out .25s;
   --modal-transition: all ease-in-out .35s;
   --radial-gradient-bg: radial-gradient(86.56% 115.41% at 20.09% 53.71%, #2C35A2 1%, #252C88 16%, #1B2167 40%, #15194F 62%, #101540 83%, #0F133B 100%);
-  --linear-gradient-bg: linear-gradient(-45deg, #0F133B, #252C88);
   --logo-size: 43px;
   --black: #040404;
   --gray: #8B8B8B;
+  --light-blue: #6DE0F6;
 }
 
 html {
@@ -20,6 +20,10 @@ html {
   margin: 0;
   padding: 0;
   /* now it won't affect containers' width and won't change containers' actual size */
+}
+
+*:not(input) {
+  caret-color: transparent;
 }
 
 .body {
@@ -46,8 +50,13 @@ select:focus {
   outline: 0;
 }
 
-.no-scroll {
-  overflow: hidden;
+input:disabled, textarea:disabled, input:disabled::placeholder, textarea:disabled::placeholder {
+  -webkit-text-fill-color: currentColor; /* 1. sets text fill to current `color` for safari */
+  opacity: 1; /* 2. correct opacity on iOS */
+}
+
+input:focus {
+  caret-color: var(--black);
 }
 
 
@@ -133,7 +142,7 @@ select:focus {
   margin: 0;
   font-size: 1.375rem;
   line-height: var(--logo-size);
-  color: #6DE0F6;
+  color: var(--light-blue);
 }
 
 .header__menu-list {
@@ -173,7 +182,7 @@ select:focus {
   border-radius: 20px;
   width: 146px;
   height: 38px;
-  background: #6DE0F6;
+  background: var(--light-blue);
 }
 
 .header__sign-up-button:hover,
@@ -184,7 +193,7 @@ select:focus {
 .header__login-button {  
   width: 105px;
   height: 38px;
-  border: 2px solid #6DE0F6;
+  border: 2px solid var(--light-blue);
   border-radius: 20px;
   color: #fff;
   background-color: transparent;
@@ -346,7 +355,7 @@ select:focus {
   width: max(274px, 40%);
   height: 100%;
   background-color: #CEEDFF;
-  padding: 20px;
+  padding: 1.25rem;
   -webkit-transition: var(--modal-transition);
   -moz-transition: var(--modal-transition);
   -ms-transition: var(--modal-transition);
@@ -517,6 +526,13 @@ h3.exchange__subtitle {
 
 .exchange__rate {
   grid-area: rate;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.exchange__rate-output,
+.exchange__commission-output {
+  display: flex;
 }
 
 .exchange__commission {
@@ -552,14 +568,22 @@ h3.exchange__subtitle {
   letter-spacing: 0.05em;
 }
 
-.gray {
-  color: var(--gray);
+.exchange__rate h4,
+.exchange__commission h4 {
+  width: 100%;
 }
 
 .exchange__rate p,
 .exchange__commission p {
   margin-top: .125rem;
+  line-height: 1.2;
   font-size: 1.125rem;
+}
+
+.exchange__rate-currency-1,
+.exchange__rate-currency-2,
+.exchange__comission-currency {
+  color: var(--gray);
 }
 
 .exchange__given-currency-input,
@@ -582,6 +606,13 @@ h3.exchange__subtitle {
   padding-left: 12px;
 }
 
+/* iOS disabled bug fix */
+.exchange__received-currency-input,
+.exchange__received-currency-input:disabled {
+  -webkit-text-fill-color: var(--black);
+  opacity: 1;
+}
+
 .exchange__given-currency-selector,
 .exchange__received-currency-selector {
   padding-left: 12px;
@@ -591,11 +622,6 @@ h3.exchange__subtitle {
   background: #CEEDFF url("../imgs/svg/dropdown.svg") no-repeat;
   background-position: right 1rem top 55%;
   cursor: pointer;
-}
-
-.exchange__given-currency-selector:invalid:not(:disabled),
-.exchange__received-currency-selector:invalid:not(:disabled) {
-  color: var(--gray);
 }
 
 .exchange__button-container {
@@ -711,7 +737,7 @@ h3.exchange__subtitle {
   .exchange__received-currency-input,
   .exchange__given-currency-selector,
   .exchange__received-currency-selector {
-    width: clamp(240px, 50vw, 370px);
+    width: clamp(270px, 70%, 370px);
   }
 
   .exchange__give,
@@ -725,6 +751,11 @@ h3.exchange__subtitle {
   .exchange__rate,
   .exchange__commission {
     justify-items: center;
+  }
+
+  .exchange__rate h4,
+  .exchange__commission h4 {
+    text-align: center;
   }
 
   .exchange__give label,
@@ -754,6 +785,11 @@ h3.exchange__subtitle {
 
   .exchange__rate {
     margin-bottom: 2rem;
+  }
+
+  .exchange__rate-output,
+  .exchange__commission-output {
+    margin-inline: auto;
   }
 
   .exchange__swap-container {
@@ -874,13 +910,13 @@ h3.exchange__subtitle {
 .modal-window__content {
   background-color: #CEEDFF;
   margin: auto;
-  padding: 20px;
+  padding: 1.25rem;
   width: clamp(450px, 50%, 800px);
 }
 
 .modal-window__close {
   position: relative;
-  left: 98%;
+  float: right;
   top: -10px;
   font-size: 1.75rem;
   font-weight: bold;
@@ -900,6 +936,8 @@ h3.exchange__subtitle {
 }
 
 .modal-window__text {
+  padding-left: .625rem;
+  padding-block: 2.5rem 1.25rem;
   font-size: 1.4rem;
   color: var(--black);
 }
@@ -917,20 +955,20 @@ h3.exchange__subtitle {
   .modal-window__content {
     background-color: #CEEDFF;
     margin: 0;
-    padding: 20px;
+    padding: 1.25rem;
     padding-top: 185px;
     width: 100%;
     height: 100%;
   }
 
   .modal-window__close {
-    position: absolute;
-    left: 90%;
-    top: 5.5%;
+    right: 5%;
+    top: -145px;
   }
 
   .modal-window__text {
-    width: 178px;
+    margin: auto;
+    width: 70%;
   }
 }
 
@@ -974,6 +1012,7 @@ h3.exchange__subtitle {
 }
 
 .latest-applications__app {
+  position: relative;
   width: 100%;
   margin-bottom: 4rem;
 }
@@ -985,13 +1024,13 @@ h3.exchange__subtitle {
 
 .latest-applications__app h3,
 .latest-applications__app p,
-.latest-applications__app .currency {
+.latest-applications__app span {
   color: var(--black);
   text-align: center;
 }
 
 .latest-applications__app h3,
-.latest-applications__app .currency {
+.latest-applications__app span {
   font-size: 1.125rem;
   line-height: 1.2;
 }
@@ -1006,24 +1045,16 @@ h3.exchange__subtitle {
   font-weight: 600;
 }
 
-.latest-applications__app .currency {
+.latest-applications__app span {
   font-weight: 400;
 }
 
-.latest-applications__swap-container {
+.latest-applications__swap {
   margin-inline: 1.5rem;
   padding: 0;
   width: 1.25rem;
-  height: 1.25rem;
-}
-
-.latest-applications__swap {
-  padding: 0;
-  width: 1.25rem;
-  height: 1.25rem;
-  vertical-align: middle;
-  background: url("../imgs/svg/black-arrows.svg") no-repeat top;
-  cursor: pointer;
+  height: 1.65rem;
+  background: url("../imgs/svg/black-arrows.svg") no-repeat center;
 }
 
 
@@ -1034,6 +1065,11 @@ h3.exchange__subtitle {
 @media screen and (max-width: 767px) { 
   .latest-applications__grid {
     grid-template-columns: 1fr;
+  }
+
+  .latest-applications__app {
+    max-width: 90%;
+    margin-inline: auto;
   }
 }
 
@@ -1047,7 +1083,7 @@ h3.exchange__subtitle {
     flex-direction: column;
   }
 
-  .latest-applications__swap-container {
+  .latest-applications__swap {
     margin-block: 0.625rem;
     margin-inline: auto;
   }
@@ -1060,6 +1096,80 @@ h3.exchange__subtitle {
 
   .latest-applications__grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+
+
+
+/* slider styles */
+.latest-applications__slider-buttons {
+  display: none;
+  position: relative;
+  top: -3rem;
+  margin-inline: auto;
+  margin-block: 2rem;
+  justify-content: space-between;
+  width: 5rem;
+  height: .6rem;
+}
+
+.slider-buttons__radio {
+  position: absolute;
+  width: .6rem;
+  opacity: 0;
+}
+
+.slider-buttons__label {
+  position: relative;
+  width: .6rem;
+  cursor: pointer;
+}
+
+.slider-buttons__label > span {
+  -webkit-transition: var(--default-transition);
+  -moz-transition: var(--default-transition);
+  -ms-transition: var(--default-transition);
+  -o-transition: var(--default-transition);
+  transition: var(--default-transition);
+}
+
+.slider-buttons__button {
+  position: absolute;
+  height: .6rem;
+  width: .6rem;
+  background-color: var(--gray);
+  border-radius: 50%;
+}
+
+.slider-buttons__label .slider-buttons__radio:checked ~ span {
+  background-color: var(--light-blue);
+}
+
+@media screen and (max-width: 767px) { 
+  .latest-applications__slider-buttons {
+    display: flex;
+  }
+
+  .latest-applications__app:not(.active-slide) {
+    display: none;
+  }
+
+  .latest-applications__app.animate-slide {
+    animation: appear-from-right .35s forwards;
+  }
+}
+
+@keyframes appear-from-right {
+  0% {
+    right: -10%;
+    opacity: 0;
+  }
+
+  100% {
+    right: 0;
+    opacity: 1;
   }
 }
 
@@ -1120,7 +1230,7 @@ h3.exchange__subtitle {
   font-size: 1rem;
   line-height: var(--logo-size);
   max-height: var(--logo-size);
-  color: #6DE0F6;
+  color: var(--light-blue);
 }
 
 .footer__brand p {
@@ -1140,7 +1250,7 @@ h3.exchange__subtitle {
   width: 260px;
 }
 
-.footer__popular-directions h4 {
+.footer__popular-directions h2 {
   margin-bottom: .75rem;
 }
 
@@ -1209,7 +1319,7 @@ h3.exchange__subtitle {
   border-radius: 20px;
   width: 146px;
   height: 38px;
-  background: #6DE0F6;
+  background: var(--light-blue);
 }
 
 .footer__sign-up-button:hover,
@@ -1221,7 +1331,7 @@ h3.exchange__subtitle {
 .footer__login-button {  
   width: 105px;
   height: 38px;
-  border: 2px solid #6DE0F6;
+  border: 2px solid var(--light-blue);
   border-radius: 20px;
   color: #fff;
   background-color: transparent;
@@ -1262,7 +1372,7 @@ h3.exchange__subtitle {
     padding-left: 0;
   }
 
-  .footer__popular-directions h4,
+  .footer__popular-directions h2,
   .footer__popular-directions > ul > li,
   .footer__menu-list > li {
     text-align: center;
